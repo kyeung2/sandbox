@@ -21,7 +21,7 @@ public class InducedLockOrderingMoneyTransfer {
                     doTransfer(from, to, amount);
                 }
             }
-        } else if (toHash > fromHash) {
+        } else if (toHash < fromHash) {
             synchronized (to) {
                 synchronized (from) {
                     doTransfer(from, to, amount);

@@ -10,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InducedLockOrderingMoneyTransferTest {
+class NaiveDynamicLockOrderingMoneyTransferTest {
 
-    private InducedLockOrderingMoneyTransfer objectUnderTest = new InducedLockOrderingMoneyTransfer();
+    private NaiveDynamicLockOrderingMoneyTransfer objectUnderTest = new NaiveDynamicLockOrderingMoneyTransfer();
 
     @Test
     public void noDeadlockingDueToDynamicOrdering() throws InterruptedException {
@@ -45,10 +45,14 @@ class InducedLockOrderingMoneyTransferTest {
             });
         }
         executorService.shutdown();
-        executorService.awaitTermination(50, TimeUnit.SECONDS);
+
+        // if this timeout was set to a larger number would still not terminate, deadlock is very likely. Test by setting
+        // this to 30 seconds.
+        executorService.awaitTermination(5, TimeUnit.SECONDS);
 
         assertEquals(BigDecimal.valueOf(200.0), from.getBalance().add(to.getBalance()));  // no new money is created in the system
-        assertEquals(2_000, successes.get() + insufficientFunds.get());// all transactions accounted for
+        // this proves that not all transactions completed. I.e. deadlock occurred. 5 seconds is more than enough time for it to have completed.
+        assertNotEquals(2_000, successes.get() + insufficientFunds.get());// all transactions accounted for
 
     }
 
