@@ -10,7 +10,7 @@ You live, and you learn.
  - ThreadLocal [example](./src/main/java/io/flyingnimbus/threadlocal), [tests](./src/test/java/io/flyingnimbus/threadlocal)
  - AtomReference [example](./src/main/java/io/flyingnimbus/atomic/reference), [tests](./src/test/java/io/flyingnimbus/atomic/reference)
  - intrinsic lock [example](./src/main/java/io/flyingnimbus/synchronizedblock), [tests](./src/test/java/io/flyingnimbus/synchronizedblock)
- - dynamic lock ordering [example](./src/main/java/io/flyingnimbus/synchronizedblock), [tests](./src/test/java/io/flyingnimbus/synchronizedblock)
+ - dynamic lock ordering [example](./src/main/java/io/flyingnimbus/lockordering), [tests](./src/test/java/io/flyingnimbus/lockordering)
  - volatile correctly [example](./src/main/java/io/flyingnimbus/volatiles), [tests](./src/test/java/io/flyingnimbus/volatiles)
  - stack-confinement [example](./src/main/java/io/flyingnimbus/threadsafe), [tests](./src/test/java/io/flyingnimbus/threadsafe)
  - immutable objects [example](./src/main/java/io/flyingnimbus/threadsafe), [tests](./src/test/java/io/flyingnimbus/threadsafe)
