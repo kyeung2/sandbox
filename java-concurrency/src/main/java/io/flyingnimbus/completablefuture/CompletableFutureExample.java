@@ -26,7 +26,7 @@ public class CompletableFutureExample {
     // uses common ForkJoinPool
     public void runAsyncExecutor(Executor executor) {
         Runnable task = () ->
-                System.out.println(getCurrentThread() + "Async task thread");
+                System.out.println("Async task thread: " + getCurrentThread());
 
         final CompletableFuture<Void> future = CompletableFuture.runAsync(task, executor);
 

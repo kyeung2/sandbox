@@ -19,7 +19,6 @@ class CompletableFutureExampleTest {
     @Test
     public void runAsyncExecutor() {
         Executor executor = Executors.newSingleThreadExecutor();
-
         objectUnderTest.runAsyncExecutor(executor);
     }
 
