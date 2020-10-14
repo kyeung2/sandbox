@@ -3,6 +3,7 @@ package io.nimbus.reactive.router;
 import io.nimbus.reactive.controller.PostService;
 import io.nimbus.reactive.data.Post;
 import lombok.AllArgsConstructor;
+import org.springframework.data.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -49,13 +50,6 @@ public class PostHandler {
     public Mono<ServerResponse> delete(ServerRequest request) {
         long id = Long.parseLong(request.pathVariable("id"));
         return postService.delete(id).flatMap(v -> ServerResponse.noContent().build());
-    }
-
-    private Mono<ServerResponse> stubbed() {
-        Post p = Post.builder().id(1).title("some title").content("some content").build();
-        return ok()
-                .contentType(APPLICATION_JSON)
-                .bodyValue(p);
     }
 }
 

@@ -31,7 +31,6 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
     @Override
     @Bean
     public ConnectionFactory connectionFactory() {
-
         return new H2ConnectionFactory(H2ConnectionConfiguration.builder()
                 .inMemory("testdb")
                 .username("sa")
@@ -44,9 +43,8 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
         return new R2dbcTransactionManager(connectionFactory);
     }
 
-
     @Bean
-     ConnectionFactoryInitializer initializer(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
+    ConnectionFactoryInitializer initializer(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
 
         var initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
@@ -60,7 +58,7 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
     }
 
     @Bean
-    public CommandLineRunner demoData(PostRepository repository) {
+    CommandLineRunner demoData(PostRepository repository) {
 
         return (args) -> {
             // save a few posts

@@ -18,6 +18,13 @@ public class PostServiceImpl implements PostService {
     
     @Override
     public Flux<Post> all() {
+
+        //TODO alternatively using the DatabaseClient, useful for complex queries.
+//        return client.execute("SELECT id, title, content FROM posts")
+//                .as(Post.class)
+//                .fetch()
+//                .all();
+
         return repository.findAll();
     }
 
