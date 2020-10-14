@@ -53,8 +53,7 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
         var p = new CompositeDatabasePopulator();
         p.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
-        // using the CommandLineRunner bean below to add the demo data. Easier to adjust in code.
-//        p.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
+        p.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
         initializer.setDatabasePopulator(p);
 
         return initializer;

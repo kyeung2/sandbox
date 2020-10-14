@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 @RestController()
-@RequestMapping(value = "/posts")
+@RequestMapping(value = "/controller/posts")
 @RequiredArgsConstructor
 class PostController {
 
@@ -20,6 +23,7 @@ class PostController {
     }
 
     @PostMapping("")
+    @ResponseStatus(CREATED)
     public Mono<Post> create(@RequestBody Post post) {
         return postService.create(post);
     }
@@ -35,6 +39,7 @@ class PostController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(NO_CONTENT)
     public Mono<Void> delete(@PathVariable("id") Long id) {
         return postService.delete(id);
     }

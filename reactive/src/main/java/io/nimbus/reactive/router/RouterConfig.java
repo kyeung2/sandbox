@@ -14,11 +14,12 @@ public class RouterConfig {
 
     @Bean
     RouterFunction<ServerResponse> router(PostHandler handler) {
-
         return route()
-                .GET("person/{id}", accept(APPLICATION_JSON), handler::getPerson)
-                .GET("person", accept(APPLICATION_JSON), handler::listPeople)
-                .POST("person", handler::createPerson)
+                .GET("router/posts/{id}", accept(APPLICATION_JSON), handler::get)
+                .GET("router/posts", accept(APPLICATION_JSON), handler::all)
+                .POST("router/posts", accept(APPLICATION_JSON), handler::create)
+                .PUT("router/posts/{id}", accept(APPLICATION_JSON), handler::update)
+                .DELETE("router/posts/{id}", accept(APPLICATION_JSON), handler::delete)
                 .build();
     }
 
