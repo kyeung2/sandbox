@@ -22,6 +22,8 @@ import java.time.Duration;
 import java.util.List;
 
 
+//TODO EnableR2dbcAuditing is not available as of spring boot 2.3, will once version 2.4 is available add this support.
+//@EnableR2dbcAuditing
 @Configuration
 @EnableR2dbcRepositories
 @EnableTransactionManagement
