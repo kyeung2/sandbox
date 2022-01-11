@@ -61,7 +61,7 @@ public class MergeSort {
 
     // Divide the array into two sub arrays, sort them and merge them
     private static void sort(int[] arr, int l, int r) {
-        
+
         if (l < r) {
 
             // m is the point where the array is divided into two sub arrays
@@ -79,6 +79,89 @@ public class MergeSort {
         sort(arr, 0, arr.length - 1);
     }
 
+
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6, 7};
+
+        System.out.println("Given:");
+        System.out.println(Arrays.toString(arr));
+        System.out.println("Sorted");
+        new MergeSort().mergeSort_practice(arr);
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+
+    //TODO practice
+    private void mergeSort_practice(int[] arr) {
+        divide(arr, 0, arr.length - 1);
+    }
+
+
+    private void divide(int[] arr, int l, int r) {
+
+        if (l < r) {
+
+
+            //TODO there is a nicer (l+r)/2 but I cant see it intuitively...
+            int m = l + ((r - l) / 2);
+            divide(arr, l, m);
+            divide(arr, m + 1, r);
+            conquer(arr, l, m, r);
+        }
+    }
+
+
+    private void conquer(int[] arr, int l, int m, int r) {
+
+        /**
+         * TODO if you look at this diagram it makes sense. M is the index of the last of sub array L so +1:
+         * | 0 | 1 | 2 | 3 | 4 |
+         *   L       M       R
+         *
+         * L: | 0 | 1 | 2 |
+         * R: | 3 | 4 |
+         * this includes elements []
+         */
+        //get size of l and r.
+
+        int sizeL = m - l + 1;
+        int sizeR = r - m;
+
+
+        // copy data into temp arrays
+        int[] tempL = new int[sizeL];
+        int[] tempR = new int[sizeR];
+        for (int i = 0; i < sizeL; i++) {
+            tempL[i] = arr[l + i];
+        }
+
+        //TODO my intuition is slightly wrong here...
+        for (int i = 0; i < sizeR; i++) {
+            //TODO +1 as m is the index of the end of the L sub-array, thus m+1 is the first of the R sub array
+            tempR[i] = arr[m + 1 + i];
+        }
+
+        int runningIndexL = 0;
+        int runningIndexR = 0;
+
+        //TODO important this doesn't start from 0, given this method will be recursively called at different parts of the array.
+        int mainIndex = l;
+
+        while (runningIndexL < sizeL && runningIndexR < sizeR) {
+            if (tempL[runningIndexL] <= tempR[runningIndexR]) {
+                arr[mainIndex++] = tempL[runningIndexL++];
+            } else {
+                arr[mainIndex++] = tempR[runningIndexR++];
+            }
+        }
+        while (runningIndexL < sizeL) {
+            arr[mainIndex++] = tempL[runningIndexL++];
+        }
+        while (runningIndexR < sizeR) {
+            arr[mainIndex++] = tempR[runningIndexR++];
+        }
+    }
 
     /**
      * A pretty intuitive implementation using Arrays.copyRange()
@@ -120,5 +203,6 @@ public class MergeSort {
             return ret;
         }
     }
+
 
 }
