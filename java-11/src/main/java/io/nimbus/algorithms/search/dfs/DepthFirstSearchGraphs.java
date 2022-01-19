@@ -21,6 +21,7 @@ public class DepthFirstSearchGraphs {
         dfsRecursive(start, isVisited);
     }
 
+    // this is essentially a pre-order DFS, it cannot be anything else
     private void dfsRecursive(int current, boolean[] isVisited) {
         isVisited[current] = true;
         visit(current);
